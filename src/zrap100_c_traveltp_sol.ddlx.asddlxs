@@ -1,0 +1,149 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Travel',
+    typeNamePlural: 'Travels',
+    imageUrl: 'Attachment',  //case-sensitive
+    description: { type: #STANDARD, value: 'TravelID' } //case-sensitive
+  },
+
+  deleteHidden: #('IsVisibleReject')
+}
+
+annotate view ZRAP100_C_TRAVELTP_SOL with
+{
+
+  @UI.facet: [ {
+    id: 'idIdentification',
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Travel',
+    position: 10
+  } ]
+
+  //  @UI: {
+  //        lineItem:       [ { position: 10, importance: #HIGH } ],
+  //        identification: [ { position: 10 } ],
+  //        selectionField: [ { position: 10 } ],
+  //        hidden: #('Note')
+  //  }
+
+  //@UI.lineItem: [
+  //  {
+  ////    hidden: true,
+  //    label: 'Sold-To Party',
+  //    type: #AS_FIELDGROUP,
+  ////    hidden: #('Note'),
+  //    valueQualifier: ' multipleActionFields'
+  //  }
+  //]
+  //@UI.connectedFields: [
+  //  {
+  //    importance: #HIGH,
+  //    qualifier: 'Connected',
+  //    name: 'TravelID',
+  //    template: '{TravelID} / {AgencyID}',
+  //    groupLabel: 'Connected DateTime'
+  //  }
+  //]
+  //  @UI.fieldGroup: [
+  //  {
+  //    type: #STANDARD,
+  //    position: 1 ,
+  //    qualifier: 'FieldGroup1'
+  //  }
+  //]
+  TravelID;
+
+  @UI: {
+        lineItem:       [ { position: 20, importance: #HIGH } ],
+        identification: [ { position: 20 } ],
+        selectionField: [ { position: 20 } ]
+  }
+
+  //@UI.connectedFields: [
+  //  {
+  //    importance: #HIGH,
+  //    name: 'AgencyID',
+  //    qualifier: 'Connected'
+  //  }
+  //]
+  //@UI.fieldGroup: [
+  //  {
+  //    label: 'Dummy Button',
+  //    dataAction: 'SomeAction',
+  //    type: #FOR_ACTION,
+  //    position: 2 ,
+  //    qualifier: 'FieldGroup1'
+  //  }
+  //]
+  AgencyID;
+
+  @UI: {
+        lineItem:       [ { position: 30, importance: #HIGH } ],
+        identification: [ { position: 30 } ],
+        selectionField: [ { position: 30 } ]
+  }
+  CustomerID;
+
+  @UI: {
+        lineItem:       [ { position: 40, importance: #MEDIUM } ],
+        identification: [ { position: 40 } ]
+  }
+  BeginDate;
+
+  @UI: {
+        lineItem:       [ { position: 50, importance: #MEDIUM } ],
+        identification: [ { position: 50 } ]
+  }
+  EndDate;
+
+  @UI.identification: [ { position: 60 } ]
+  BookingFee;
+
+  @UI.identification: [ { position: 70 } ]
+  TotalPrice;
+
+  @UI.identification: [ { position: 90 } ]
+  Description;
+
+  @UI: {
+  lineItem:       [ { position: 100, importance: #HIGH }
+                    ,{ type: #FOR_ACTION, dataAction: 'copyTravel', label: 'Copy Travel' }
+                    ,{ type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'Accept Travel', invocationGrouping: #CHANGE_SET }
+                    ,{ type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'Reject Travel' }
+       ],
+  identification: [ { position: 100 }
+                   ,{ type: #FOR_ACTION, dataAction: 'deductDiscount', label: 'Deduct Discount' }
+                   ,{ type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'Accept Travel', invocationGrouping: #CHANGE_SET }
+                   ,{ type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'Reject Travel' }
+       ],
+    textArrangement: #TEXT_ONLY
+  }
+
+  OverallStatus;
+
+  @UI.identification: [ { position: 110 } ]
+  Attachment;
+
+  @UI.identification: [ { position: 120 } ]
+  @UI.lineItem: [{ position: 120 }]
+  note;
+
+  @UI.hidden: true
+  MimeType;
+
+  @UI.hidden: true
+  FileName;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+
+  @UI.hidden: true
+  
+  CreatedAt;
+
+  @UI.hidden: true
+  CreatedBy;
+
+}
